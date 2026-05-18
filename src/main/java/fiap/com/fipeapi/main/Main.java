@@ -21,13 +21,9 @@ public class Main {
     private final FipeService service;
     private ApiConsume apiConsume = new ApiConsume();
     private DataConverter converter = new DataConverter();
-
     private TypeGetter typeGetter = new TypeGetter();
 
-
-    public Main(FipeService service){
-        this.service = service;
-    }
+    public Main(FipeService service){this.service = service;}
 
     public void menu(){
         System.out.println("\nSEJA BEM VINDO AO CONSULTOR DA TABELA FIPE");
@@ -50,5 +46,6 @@ public class Main {
         String brandInput = scanner.nextLine().toLowerCase();
 
 //        String json2 = apiConsume.getData(ADDRESS.formatted())
+        System.out.println(brands);
     }
 }
