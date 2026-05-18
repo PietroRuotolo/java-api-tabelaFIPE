@@ -1,10 +1,12 @@
 package fiap.com.fipeapi.main;
 
+import fiap.com.fipeapi.model.Brands;
 import fiap.com.fipeapi.service.ApiConsume;
+import fiap.com.fipeapi.service.DataConverter;
 import fiap.com.fipeapi.service.FipeService;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 @Component
@@ -14,6 +16,7 @@ public class Main {
     private final String ADDRESS = "https://parallelum.com.br/fipe/api/v1/%s/marcas";
     private final FipeService service;
     private ApiConsume apiConsume = new ApiConsume();
+    private DataConverter converter = new DataConverter();
     ///marcas/%s/modelos/%s/anos/%s/";
 
     public Main(FipeService service){
@@ -36,10 +39,9 @@ public class Main {
             type = "caminhoes";
         }
 
-        try {
-            apiConsume.getData(ADDRESS.formatted(type));
-        }catch (InterruptedException | IOException e){
-            throw new RuntimeException();
-        }
+        String json = apiConsume.getData(ADDRESS.formatted(type));
+        List<Brands> brands = converter.convert(json, Brands.class);
+
+        System.out.println(brands);
     }
 }
