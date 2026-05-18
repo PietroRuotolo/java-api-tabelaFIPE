@@ -1,7 +1,5 @@
 package fiap.com.fipeapi.service;
 
-import fiap.com.fipeapi.model.Brands;
-
 public class TypeGetter {
     public String getType(String typeInput){
         String vehicleType = "";
