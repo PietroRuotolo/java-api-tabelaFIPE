@@ -1,5 +1,8 @@
 package fiap.com.fipeapi.main;
 import fiap.com.fipeapi.model.Brand;
+import fiap.com.fipeapi.model.ModelResponse;
+import fiap.com.fipeapi.model.VehicleModel;
+import fiap.com.fipeapi.model.VehicleYear;
 import fiap.com.fipeapi.service.ApiConsume;
 import fiap.com.fipeapi.service.DataConverter;
 import fiap.com.fipeapi.service.FipeService;
@@ -32,21 +35,20 @@ public class Main {
 
         String vehicleType = "";
 
-        while (vehicleType == ""){
-            vehicleType = typeGetter.getType(scanner.nextLine().toLowerCase());
-        }
-
         while (vehicleType.isEmpty()){
             vehicleType = typeGetter.getType(scanner.nextLine().toLowerCase());
         }
 
         String json1 = apiConsume.getData(urlGetter.getURL(vehicleType));
-        List<Brand> brands = converter.convert(json1, Brand.class);
+        List<Brand> brands = converter.convertAll(json1, Brand.class);
         System.out.println(brands);
 
         System.out.print("\nSelecione a marca do carro [INSIRA O CÓDIGO]: ");
-        String brandInput = scanner.nextLine().toLowerCase();
+        String brandInput = scanner.nextLine();
 
-//        String json2 = apiConsume.getData(ADDRESS.formatted())
+        String json2 = apiConsume.getData(urlGetter.getURl(vehicleType,brandInput));
+        ModelResponse modelResponse = converter.convert(json2, ModelResponse.class);
+        System.out.println(modelResponse.modelos());
+
     }
 }

@@ -11,13 +11,26 @@ public class DataConverter implements IDataConverter{
 
     ObjectMapper mapper = new ObjectMapper();
     @Override
-    public <T> List<T> convert(String json, Class<T> tClass) {
+    public <T> List<T> convertAll(String json, Class<T> tClass) {
         try {
             return mapper.readValue(json,
                     mapper.getTypeFactory()
                             .constructCollectionType(List.class, tClass));
         } catch (JsonProcessingException e) {
+            System.out.println("Não foi possível converter...");
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public <T> T convert(String json, Class<T> tClass) {
+        try{
+            return mapper.readValue(json, tClass);
+        }catch (JsonProcessingException e){
+            System.out.println("Não foi possível converter...");
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+
     }
 }
