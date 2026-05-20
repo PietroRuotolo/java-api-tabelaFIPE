@@ -38,15 +38,22 @@ public class Main {
 
         String json1 = apiConsume.getData(urlGetter.getURL(vehicleType));
         List<Brand> brands = converter.convertAll(json1, Brand.class);
-        BrandData brandData = new BrandData(brands);
+        BrandResponse brandData = new BrandResponse(brands);
         brandData.printData();
 
-        System.out.print("\nSelecione a marca do carro [INSIRA O CÓDIGO]: ");
+        System.out.print("\nSelecione a marca do veículo [INSIRA O CÓDIGO]: ");
         String brandInput = scanner.nextLine();
 
         String json2 = apiConsume.getData(urlGetter.getURl(vehicleType,brandInput));
         ModelResponse modelResponse = converter.convert(json2, ModelResponse.class);
-        System.out.println(modelResponse.modelos());
+        modelResponse.printData();
+
+        System.out.print("\nSelecione o modelo do veículo [INSIRA O CÓDIGO]:  ");
+        String modelInput = scanner.nextLine();
+
+        String json3 = apiConsume.getData(urlGetter.getURl(vehicleType, brandInput, modelInput));
+        List<VehicleYear> years = converter.convertAll(json3, VehicleYear.class);
+        System.out.println(years);
 
     }
 }
