@@ -7,9 +7,4 @@ public record Brand(
         String code,
         @JsonAlias("nome")
         String name){
-
-    @Override
-    public String toString() {
-        return "%nMarca: %s%nCódigo: %s%n".formatted(name, code);
-    }
 }
