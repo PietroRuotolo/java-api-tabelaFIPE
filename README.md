@@ -63,6 +63,7 @@ Modelos encontrados:
 001 Flagship AWD
 001 Premium AWD
 7X Flagship AWD
+
 Conceitos praticados
 Consumo de APIs REST
 Programação orientada a objetos
@@ -73,7 +74,7 @@ Generics
 Injeção de dependência
 Organização de projeto backend
 Boas práticas com Git e commits semânticos
-Melhorias futuras
+Melhorias futuras:
  Interface gráfica
  Integração com banco de dados
  Criação de endpoints REST
@@ -81,5 +82,5 @@ Melhorias futuras
  Testes automatizados
  Cache de consultas
  Tratamento avançado de exceções
-Autor
+Autor:
 Desenvolvido por Pietro Ruotolo.
