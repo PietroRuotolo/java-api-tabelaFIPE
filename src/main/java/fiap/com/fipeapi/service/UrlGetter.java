@@ -20,7 +20,7 @@ public class UrlGetter {
         return String.format(ADDRESS_MODEL, type, brandCode, modelCode);
     }
 
-    public String getURL(String type, String brandCode, String modelCode, String year){
-        return String.format(ADDRESS_YEAR, type, brandCode, modelCode, year);
+    public String getURL(String type, String brandCode, String modelCode, String yearCode){
+        return String.format(ADDRESS_YEAR, type, brandCode, modelCode, yearCode);
     }
 }

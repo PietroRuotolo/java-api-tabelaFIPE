@@ -30,13 +30,13 @@ public class Main {
                 "\nMotos" +
                 "\nCaminhões");
 
-        String vehicleType = "";
+        String typeInput = "";
 
-        while (vehicleType.isEmpty()){
-            vehicleType = typeGetter.getType(scanner.nextLine().toLowerCase());
+        while (typeInput.isEmpty()){
+            typeInput = typeGetter.getType(scanner.nextLine().toLowerCase());
         }
 
-        String json1 = apiConsume.getData(urlGetter.getURL(vehicleType));
+        String json1 = apiConsume.getData(urlGetter.getURL(typeInput));
         List<Brand> brands = converter.convertAll(json1, Brand.class);
         BrandResponse brandData = new BrandResponse(brands);
         brandData.printData();
@@ -44,16 +44,24 @@ public class Main {
         System.out.print("\nSelecione a marca do veículo [INSIRA O CÓDIGO]: ");
         String brandInput = scanner.nextLine();
 
-        String json2 = apiConsume.getData(urlGetter.getURl(vehicleType,brandInput));
+        String json2 = apiConsume.getData(urlGetter.getURl(typeInput,brandInput));
         ModelResponse modelResponse = converter.convert(json2, ModelResponse.class);
         modelResponse.printData();
 
         System.out.print("\nSelecione o modelo do veículo [INSIRA O CÓDIGO]:  ");
         String modelInput = scanner.nextLine();
 
-        String json3 = apiConsume.getData(urlGetter.getURl(vehicleType, brandInput, modelInput));
+        String json3 = apiConsume.getData(urlGetter.getURl(typeInput, brandInput, modelInput));
         List<VehicleYear> years = converter.convertAll(json3, VehicleYear.class);
         System.out.println(years);
+
+        System.out.print("\nSelecione o ano do veículo [INSIRA O CÓDIGO]: ");
+        String yearInput = scanner.nextLine();
+
+        String json4 = apiConsume.getData(urlGetter.getURL(typeInput, brandInput, modelInput, yearInput));
+        VehicleOverall vehicleOverall = converter.convert(json4, VehicleOverall.class);
+        vehicleOverall.printData();
+
 
     }
 }
